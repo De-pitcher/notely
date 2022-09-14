@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notely/screens/add_note_page.dart';
 import 'package:notely/screens/edit_note_page.dart';
+import 'package:notely/screens/profile_page.dart';
 import 'package:notely/utils/util.dart';
 import 'package:notely/widget/note_card.dart';
 
@@ -16,7 +17,9 @@ class RecentNotesPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: Helper.customppBar(
         'Recent Notes',
-        AppIcons.filter_icon,
+        InkWell(
+            onTap: () => Navigator.pushNamed(context, ProfilePage.id),
+            child: AppIcons.filter_icon),
         AppIcons.search_icon,
       ),
       body: ListView(

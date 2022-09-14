@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Notel is the world\'s safest, largest and  intelligent digital notebook. Join over 10M+ users already using Notely',
+                    'Notely is the world\'s safest, largest and  intelligent digital notebook. Join over 10M+ users already using Notely',
                     style: AppTheme.textStyle,
                     textAlign: TextAlign.center,
                   ),

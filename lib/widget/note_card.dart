@@ -14,11 +14,11 @@ Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
-          doc['notely_title'],
+          doc[notelyTitle],
           style: AppTheme.boldTextStyle,
         ),
         Text(
-          doc['notely_content'],
+          doc[notelyContent],
           style: AppTheme.textStyle2,
         ),
       ]),

@@ -41,7 +41,7 @@ class _EditNotePageState extends State<EditNotePage> {
     // print(controller.value.text);
     return Scaffold(
       appBar: Helper.customppBar(
-        'Editt Notes',
+        'Edit Notes',
         InkWell(onTap: () => Navigator.pop(context), child: AppIcons.back_icon),
         AppIcons.more_icon,
       ),

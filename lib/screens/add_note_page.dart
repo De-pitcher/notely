@@ -16,7 +16,7 @@ class _AddNotePageState extends State<AddNotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Helper.customppBar(
-        'Editt Notes',
+        'Add Note',
         InkWell(onTap: () => Navigator.pop(context), child: AppIcons.back_icon),
         AppIcons.more_icon,
       ),

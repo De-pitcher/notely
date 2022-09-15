@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notely/utils/app_theme_notifier.dart';
 import 'package:notely/utils/util.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -41,9 +43,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: 'Edit Profile',
                   icon: AppIcons.edit_icon,
                 ),
-                ProfileTile(
-                  title: 'App Theme',
-                  icon: AppIcons.theme_icon,
+                Consumer(
+                  builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                    return ProfileTile(
+                      title: 'App Theme',
+                      icon: InkWell(
+                          onTap: (() => ref
+                              .read(appThemeStateProvider.notifier)
+                              .toggleAppTheme(ref)),
+                          child: AppIcons.theme_icon),
+                    );
+                  },
                 ),
                 ProfileTile(
                   title: 'Notification',

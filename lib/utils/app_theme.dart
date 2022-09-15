@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static const scaffoldBackgroundColor = Color(0xFFF8EEE2);
+  static const darkThemeColor = Color(0xFF000633);
   static const headingTextColor = Color(0xFF403B36);
   static const textColor = Color(0xFF595550);
   static const darkOrangeColor = Color(0xFFD9614C);
@@ -13,33 +15,49 @@ class AppTheme {
   static const inputBorderColor = Color(0xFFF2E5D5);
   static const checkColor = Color(0xFF5A5266);
 
-  static ThemeData lightTheme(ColorScheme? lightColorScheme) {
-    ColorScheme scheme = lightColorScheme ??
-        ColorScheme.fromSeed(seedColor: scaffoldBackgroundColor);
-    return ThemeData(colorScheme: scheme);
+  static ThemeData get lightTheme {
+    return ThemeData(
+      primaryColor: orangeColor,
+      appBarTheme: const AppBarTheme().copyWith(
+        backgroundColor: scaffoldBackgroundColor,
+        elevation: 0,
+      ),
+      scaffoldBackgroundColor: scaffoldBackgroundColor,
+    );
   }
 
-  static ThemeData darkTheme(ColorScheme? darkColorSceme) {
-    ColorScheme scheme = darkColorSceme ??
-        ColorScheme.fromSeed(
-            seedColor: scaffoldBackgroundColor, brightness: Brightness.dark);
-    return ThemeData(colorScheme: scheme);
+  static ThemeData get darkTheme {
+    return ThemeData(
+      primaryColor: orangeColor,
+      scaffoldBackgroundColor: darkThemeColor,
+      appBarTheme: const AppBarTheme().copyWith(
+        backgroundColor: darkThemeColor,
+        elevation: 0,
+      ),
+    );
+  }
+
+  static bool _isDarkTheme = false;
+
+  static ThemeMode getAppThemeData(bool isDarkModeEnabled) {
+    isDarkModeEnabled ? _isDarkTheme = true : _isDarkTheme = false;
+    return isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light;
   }
 
   static TextStyle headingTextStyle = GoogleFonts.nunito(
     fontWeight: FontWeight.w900,
     fontSize: 24,
+    color: !_isDarkTheme ? headingTextColor : whiteColor,
   );
-
   static TextStyle titleTextStyle = GoogleFonts.titanOne(
     fontWeight: FontWeight.w400,
     fontSize: 20,
-    color: headingTextColor,
+    color: !_isDarkTheme ? headingTextColor : whiteColor,
   );
   static TextStyle titleTextStyle2 = GoogleFonts.nunito(
     fontWeight: FontWeight.w900,
     fontSize: 28,
-    color: headingTextColor,
+    color: !_isDarkTheme ? headingTextColor : whiteColor,
   );
   static TextStyle smallerBoldTextSTyle = GoogleFonts.nunito(
     fontWeight: FontWeight.w800,
@@ -50,25 +68,25 @@ class AppTheme {
   static TextStyle appBarTitleTextStyle = GoogleFonts.titanOne(
     fontWeight: FontWeight.w900,
     fontSize: 14,
-    color: headingTextColor,
+    color: !_isDarkTheme ? headingTextColor : whiteColor,
   );
 
   static TextStyle textStyle = GoogleFonts.nunito(
     fontWeight: FontWeight.w700,
     fontSize: 16,
-    color: textColor,
+    color: !_isDarkTheme ? textColor : whiteColor,
   );
 
   static TextStyle textStyle2 = GoogleFonts.nunito(
     fontWeight: FontWeight.w700,
     fontSize: 14,
-    color: textColor,
+    color: !_isDarkTheme ? textColor : whiteColor,
   );
 
   static TextStyle boldTextStyle = GoogleFonts.nunito(
     fontWeight: FontWeight.w900,
     fontSize: 16,
-    color: textColor,
+    color: !_isDarkTheme ? textColor : whiteColor,
   );
 
   static TextStyle checkTextStyle = GoogleFonts.nunito(
@@ -124,3 +142,10 @@ class AppTheme {
             borderSide: const BorderSide(color: Colors.red, width: 2.0)),
       );
 }
+
+final appThemeProvider = Provider<AppTheme>((ref) {
+  return AppTheme();
+});
+final isDarkModeProvider = StateProvider<bool>((ref) {
+  return false;
+});

@@ -27,7 +27,7 @@ class WelcomePage extends StatelessWidget {
                   Text(
                     'World\'s Safest And Largest Digital NoteBook',
                     textAlign: TextAlign.center,
-                    style: AppTheme.headingTextStyle,
+                    style:AppTheme.headingTextStyle,
                   ),
                   const SizedBox(height: 20),
                   Text(
